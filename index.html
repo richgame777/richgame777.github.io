@@ -9,13 +9,26 @@
 	<meta name="generator" content="Scirra Construct">
 
 	<!-- Telegram Mini App Initialization -->
-	<script src="https://telegram.org/js/telegram-web-app.js?57"></script>   
+	<script src="https://telegram.org/js/telegram-web-app.js?56"></script>   
 	<script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
 	<script>
 		window.TelegramAdsController = new TelegramAdsController();
 		window.TelegramAdsController.initialize({
 			pubId: "958913",
 			appId: "2079",
+			debug: true // Enable debug mode for testing
+		});
+
+		// Add event listener for ad button
+		document.addEventListener('DOMContentLoaded', function() {
+			const button = document.getElementById('ad-button');
+			button?.addEventListener('click', () => {
+				window.TelegramAdsController.triggerInterstitialBanner(true).then((result) => {
+					console.log('Ad shown successfully:', result);
+				}).catch((result) => {
+					console.log('Ad failed to show:', result);
+				});
+			});
 		});
 	</script>
 
